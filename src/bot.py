@@ -19,7 +19,6 @@ class Bot:
     def get_contact_name(self):
         contact_name_element = self.driver.find_element(By.XPATH, '//*[@id="main"]/header/div[2]/div/div/span')
         contact_name = contact_name_element.text
-        #print(f'Enviando mensagem para {contact_name}')
         return contact_name
 
     def send_message(self, message):
@@ -32,7 +31,6 @@ class Bot:
 
     def actions_bot(self):
         try:
-            message_client_xpath = '_21Ahp'
             notification = self.driver.find_elements(By.CLASS_NAME, 'aumms1qt')
 
             if notification:
@@ -51,7 +49,7 @@ class Bot:
                     if self.contact_filter:
                         if contact_name in self.contact_list:
                             if not self.service_started:
-                                # Envia as opções para o usuário
+                               # Send the options to the user
                                 menssage_options = f'Olá {contact_name}, sou a assistente virtual do Jackson. Em que posso ajudar?'
                                 self.send_message(menssage_options)
                                 self.service_started = True
@@ -62,7 +60,7 @@ class Bot:
                                 webdriver.ActionChains(self.driver).send_keys(Keys.ESCAPE).perform()
                     else:
                         if not self.service_started:
-                                # Envia as opções para o usuário
+                                # Send the options to the user
                                 menssage_options = f'Olá {contact_name}, sou a assistente virtual do Jackson. Em que posso ajudar?'
                                 self.send_message(menssage_options)
                                 self.service_started = True
